@@ -1,65 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="da7-md-cNY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j1X-F5-hao">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--To Do List-->
+        <!--My List-->
         <scene sceneID="Ucs-PW-REj">
             <objects>
                 <tableViewController id="R6s-MT-SPa" customClass="ToDoTableViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KGt-fy-wcv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KGt-fy-wcv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="602"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="iES-HP-cvs">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="progressTintColor" name="mainBlueColor"/>
+                            <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </progressView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="70" id="2Dy-g2-bR9" customClass="ToDoTableViewCell" customModule="ToDoApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="50" id="2Dy-g2-bR9" customClass="ToDoTableViewCell" customModule="ToDoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Dy-g2-bR9" id="xF4-XJ-LaA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To Do Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLB-4S-NjM">
-                                            <rect key="frame" x="16" y="11" width="343" height="21"/>
+                                            <rect key="frame" x="16" y="14" width="343" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewO-Uc-WFo">
-                                            <rect key="frame" x="313" y="38" width="46" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <state key="normal" title="Delete">
-                                                <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="deleteTodo:" destination="2Dy-g2-bR9" eventType="touchUpInside" id="k8l-Y4-tuz"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRH-wK-Xge">
-                                            <rect key="frame" x="164" y="38" width="46" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Share"/>
-                                            <connections>
-                                                <action selector="shareTodo:" destination="2Dy-g2-bR9" eventType="touchUpInside" id="z3G-IU-dBh"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irr-8Q-D5d">
-                                            <rect key="frame" x="16" y="38" width="67" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <state key="normal" title="Complete">
-                                                <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="completeTodo:" destination="2Dy-g2-bR9" eventType="touchUpInside" id="eeu-fn-7Ae"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -72,30 +52,92 @@
                             <outlet property="delegate" destination="R6s-MT-SPa" id="1xQ-qC-MBS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="To Do List" id="YUg-zw-TY0">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="PfH-RP-Qq2">
-                            <connections>
-                                <action selector="showConnectivityAction:" destination="R6s-MT-SPa" id="oin-cs-9KY"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MTt-P5-fMo">
-                            <connections>
-                                <action selector="showAddTodoAlert:" destination="R6s-MT-SPa" id="Fl2-Lw-npy"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My List" id="YUg-zw-TY0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9MB-YR-HTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="197.59999999999999" y="138.98050974512745"/>
+        </scene>
+        <!--Container View Controller-->
+        <scene sceneID="RDv-6H-nA4">
+            <objects>
+                <viewController id="j1X-F5-hao" customClass="ContainerViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RrP-xR-BIF" customClass="Cont">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aW0-oy-lxT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="602"/>
+                                <connections>
+                                    <segue destination="da7-md-cNY" kind="embed" identifier="ToDoVC" id="Mtr-Lz-aHE"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kO-dh-ZOE">
+                                <rect key="frame" x="16" y="626" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygD-Lz-aVt">
+                                <rect key="frame" x="122" y="620" width="54" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Offline">
+                                    <color key="titleColor" name="mainYellowColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="triggerConnection:" destination="j1X-F5-hao" eventType="touchUpInside" id="kTf-wv-mCC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6w-ll-PpS">
+                                <rect key="frame" x="319" y="616" width="40" height="40"/>
+                                <color key="backgroundColor" name="mainBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="FjL-N2-HuW"/>
+                                    <constraint firstAttribute="height" constant="40" id="VI8-AP-sh6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addNewTodoItem:" destination="j1X-F5-hao" eventType="touchUpInside" id="bY1-lY-Cea"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aW0-oy-lxT" firstAttribute="top" secondItem="RrP-xR-BIF" secondAttribute="top" id="1KI-5b-Yu3"/>
+                            <constraint firstItem="u8v-h7-cy2" firstAttribute="trailing" secondItem="L6w-ll-PpS" secondAttribute="trailing" constant="16" id="4Z4-UI-jlZ"/>
+                            <constraint firstItem="u8v-h7-cy2" firstAttribute="bottom" secondItem="9kO-dh-ZOE" secondAttribute="bottom" constant="20" id="CCZ-to-jFZ"/>
+                            <constraint firstItem="9kO-dh-ZOE" firstAttribute="top" secondItem="aW0-oy-lxT" secondAttribute="bottom" constant="24" id="TJf-2B-41K"/>
+                            <constraint firstItem="9kO-dh-ZOE" firstAttribute="leading" secondItem="u8v-h7-cy2" secondAttribute="leading" constant="16" id="UMK-BP-H80"/>
+                            <constraint firstItem="ygD-Lz-aVt" firstAttribute="centerY" secondItem="9kO-dh-ZOE" secondAttribute="centerY" id="Wlg-h2-vaK"/>
+                            <constraint firstItem="aW0-oy-lxT" firstAttribute="trailing" secondItem="u8v-h7-cy2" secondAttribute="trailing" id="cU0-LH-hKe"/>
+                            <constraint firstItem="u8v-h7-cy2" firstAttribute="bottom" secondItem="L6w-ll-PpS" secondAttribute="bottom" constant="11" id="gVU-WE-BF9"/>
+                            <constraint firstItem="ygD-Lz-aVt" firstAttribute="leading" secondItem="9kO-dh-ZOE" secondAttribute="trailing" constant="9" id="kNX-Cs-yK3"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ygD-Lz-aVt" secondAttribute="trailing" constant="20" symbolic="YES" id="of2-Fc-wMi"/>
+                            <constraint firstItem="aW0-oy-lxT" firstAttribute="leading" secondItem="u8v-h7-cy2" secondAttribute="leading" id="xvY-sS-iY5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="u8v-h7-cy2"/>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="L6w-ll-PpS" id="DJ6-Of-ocX"/>
+                        <outlet property="connectionButtion" destination="ygD-Lz-aVt" id="E63-QN-xJh"/>
+                        <outlet property="containerView" destination="aW0-oy-lxT" id="Ng6-BL-TB1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IyC-PZ-e3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1274.4000000000001" y="142.57871064467767"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="keS-Nr-oRr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="da7-md-cNY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dOZ-vb-hxv">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dOZ-vb-hxv">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -108,4 +150,12 @@
             <point key="canvasLocation" x="-510" y="139"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="mainBlueColor">
+            <color red="0.0" green="0.82700002193450928" blue="0.92900002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainYellowColor">
+            <color red="1" green="0.74900001287460327" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

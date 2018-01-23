@@ -15,6 +15,8 @@ class ToDoTableViewController: UITableViewController {
     var peerID: MCPeerID!
     var mcSession: MCSession!
     var mcAdvertiserAssistant: MCAdvertiserAssistant!
+    
+    var connectionButtonReference: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,7 @@ class ToDoTableViewController: UITableViewController {
         mcSession.delegate = self
     }
     
-    @IBAction func showConnectivityAction(_ sender: Any) {
+    func showConnectivityAction() {
         let actionSheet = UIAlertController(title: "Todo Exchange", message: "Do you want to host or join a session?", preferredStyle: .actionSheet)
         
         let hostAction = UIAlertAction(title: "Host Action", style: .default) { (action) in
@@ -59,7 +61,7 @@ class ToDoTableViewController: UITableViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @IBAction func showAddTodoAlert(_ sender: Any) {
+    func showAddTodoAlert() {
         let addAlert = UIAlertController(title: "New Todo", message: "Enter a title", preferredStyle: .alert)
         addAlert.addTextField { (textField) in
             textField.placeholder = "Todo Item Title"
