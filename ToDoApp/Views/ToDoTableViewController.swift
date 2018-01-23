@@ -105,7 +105,7 @@ class ToDoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ToDoTableViewCell
-                
+        
         let todoItem = todoItems[indexPath.row]
         
         if todoItem.completed {
@@ -115,6 +115,25 @@ class ToDoTableViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let shareAction = UITableViewRowAction(style: .default, title: "Share") { (action, indexPath) in
+            let todoItem = self.todoItems[indexPath.row]
+            self.sendTodo(todoItem)
+        }
+        shareAction.backgroundColor = UIColor(named: "mainBlueColor")
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            self.todoItems[indexPath.row].deleteItem()
+            self.todoItems.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        deleteAction.backgroundColor = UIColor(named: "mainYellowColor")
+        
+        return [shareAction, deleteAction]
+        
     }
  
 
@@ -166,13 +185,6 @@ class ToDoTableViewController: UITableViewController {
 }
 
 extension ToDoTableViewController {
-    func didRequestDelete(cell: ToDoTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        
-        todoItems[indexPath.row].deleteItem()
-        todoItems.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-    }
     
     func didRequestComplete(cell: ToDoTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
@@ -180,13 +192,6 @@ extension ToDoTableViewController {
         var todoItem = todoItems[indexPath.row]
         todoItem.markAsCompleted()
         cell.todoLabel.attributedText = cell.strikeThroughText(todoItem.title)
-    }
-    
-    func didRequestShare(cell: ToDoTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        
-        let todoItem = todoItems[indexPath.row]
-        sendTodo(todoItem)
     }
     
     func sendTodo(_ todoItem: TodoItem) {
@@ -203,7 +208,6 @@ extension ToDoTableViewController {
             }
         }
     }
-    
 }
 
 extension ToDoTableViewController: MCSessionDelegate {
