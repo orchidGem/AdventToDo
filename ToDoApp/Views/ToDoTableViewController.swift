@@ -105,9 +105,7 @@ class ToDoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ToDoTableViewCell
-        
-        cell.delegate = self
-        
+                
         let todoItem = todoItems[indexPath.row]
         
         if todoItem.completed {
@@ -167,7 +165,7 @@ class ToDoTableViewController: UITableViewController {
 
 }
 
-extension ToDoTableViewController: TodoCellDelegate {
+extension ToDoTableViewController {
     func didRequestDelete(cell: ToDoTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         
