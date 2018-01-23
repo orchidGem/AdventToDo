@@ -117,6 +117,10 @@ class ToDoTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        completeTodoItem(indexPath: indexPath)
+    }
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let shareAction = UITableViewRowAction(style: .default, title: "Share") { (action, indexPath) in
@@ -186,17 +190,29 @@ class ToDoTableViewController: UITableViewController {
 
 extension ToDoTableViewController {
     
-    func didRequestComplete(cell: ToDoTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        
+    func completeTodoItem(indexPath: IndexPath) {
         var todoItem = todoItems[indexPath.row]
         todoItem.markAsCompleted()
+        todoItems[indexPath.row] = todoItem // need to update the object since it's a struct (value type) and not a class (reference type)
+        
+        guard let cell = tableView.cellForRow(at:  indexPath) as? ToDoTableViewCell else { return }
+        
+        // change style of label and animate
         cell.todoLabel.attributedText = cell.strikeThroughText(todoItem.title)
+
+        UIView.animate(withDuration: 0.3, animations: {
+            cell.transform = cell.transform.scaledBy(x: 1.5, y: 1.5)
+        }) { (_) in
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+        }
+        
     }
     
     func sendTodo(_ todoItem: TodoItem) {
         if mcSession.connectedPeers.count < 1 {
-            print("you are not connected to other devices")
+            showConnectivityAction()
             return
         }
         
