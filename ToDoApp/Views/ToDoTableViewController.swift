@@ -11,13 +11,27 @@ import MultipeerConnectivity
 
 class ToDoTableViewController: UITableViewController {
     
-    var todoItems: [TodoItem]!
+    var todoItems: [TodoItem]! {
+        didSet {
+            self.progressBar.setProgress(progress, animated: true)
+        }
+    }
     var peerID: MCPeerID!
     var mcSession: MCSession!
     var mcAdvertiserAssistant: MCAdvertiserAssistant!
     
     var connectionButtonReference: UIButton!
-
+    
+    @IBOutlet weak var progressBar: UIProgressView!
+    
+    var progress: Float {
+        if todoItems.count > 0 {
+            return Float(todoItems.filter({$0.completed}).count) / Float(todoItems.count)
+        } else {
+            return 0
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -228,14 +242,24 @@ extension ToDoTableViewController {
 
 extension ToDoTableViewController: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        
+        var stateText: String?
+        
         switch state {
         case .connected:
-            print(state)
+            stateText = "Connected"
         case .connecting:
-            print(state)
+            stateText = "Connecting"
         case .notConnected:
-            print(state)
+            stateText = "Not Connected"
         }
+        
+        if let text = stateText {
+            DispatchQueue.main.async {
+                self.connectionButtonReference.setTitle(text, for: .normal)
+            }
+        }
+        
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
